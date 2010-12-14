@@ -7,7 +7,6 @@ Sis::Application.routes.draw do
 
   get "students/edit"
 
-  get "students/yaredo"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
