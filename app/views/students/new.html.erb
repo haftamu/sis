@@ -1,2 +1,6 @@
-<h1>Students#new</h1>
-<p>Find me in app/views/students/new.html.erb</p>
+<h1>New student</h1>
+<fieldset id="personal_info"><legend>Personal Information</legend>
+<%= render 'form' %>
+</fieldset>
+<%= link_to 'Back', students_path %>
+

@@ -10,31 +10,59 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101214125241) do
+ActiveRecord::Schema.define(:version => 20101216193426) do
 
-  create_table "colleges", :force => true do |t|
+  create_table "addresses", :force => true do |t|
+    t.string   "pobox"
+    t.string   "city"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "region"
+    t.string   "town"
+    t.string   "wereda"
+    t.string   "kebele"
+    t.integer  "student_id"
+  end
+
+  create_table "enrolment_types", :force => true do |t|
     t.string   "name"
-    t.string   "dean"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "people", :force => true do |t|
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
+  create_table "program_types", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sex",         :limit => nil
-    t.date     "birth_date"
-    t.string   "mother_name"
+  end
+
+  create_table "programs", :force => true do |t|
+    t.integer  "enrolment_type"
+    t.integer  "program_type"
+    t.string   "attendance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "simples", :force => true do |t|
+    t.string   "test"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "students", :force => true do |t|
-    t.integer  "person_id"
-    t.string   "student_id"
+    t.string   "id_number"
+    t.integer  "batch_year"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "sex"
+    t.date     "birth_date"
+    t.string   "nationality"
+    t.string   "place_of_birth"
+    t.string   "marital_status"
   end
 
 end

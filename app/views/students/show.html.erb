@@ -1,2 +1,8 @@
-<h1>Students#show</h1>
-<p>Find me in app/views/students/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+<pre>
+<div id="student_profile">
+<%= @student.inspect %>
+</div>
+</pre>
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

@@ -1,8 +1,8 @@
 class CreateStudents < ActiveRecord::Migration
   def self.up
     create_table :students do |t|
-      t.integer :person_id
-      t.string :student_id
+      t.string :id_number
+      t.integer :batch_year
 
       t.timestamps
     end

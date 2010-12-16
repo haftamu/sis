@@ -1,0 +1,35 @@
+<%= form_for(@student) do |f| %>
+  <% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% @student.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <pre style='padding:1px'>
+ <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+    <%= f.label :father_name %>
+    <%= f.text_field :middle_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+    <%= f.label :sex %>
+    <%= f.select(:sex,[' ','Female','Male']) %>
+    <%= f.label :birth_date %>
+    <%= f.text_field :birth_date %>
+    <%= f.label :naionality %>
+    <%= f.text_field :nationality %>
+  </div>
+<div id="address_div" style="margin:0pt;">
+    <%= render 'addresses_form' %>
+</div> 
+</pre> 
+ <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

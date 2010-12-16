@@ -1,0 +1,13 @@
+Program:
+  regular_degree:
+    enrolment_type_id:regular
+    program_type_id: degree
+    attendance: fulltime
+  regular_masters: 
+    enrolment_type_id: regular
+    program_type_id: masters
+    attendance: part-time
+  extension_degree:
+    enrolment_type_id: extension
+    program_type_id: degree
+    attendance:part-time
