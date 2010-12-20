@@ -1,0 +1,40 @@
+<h1>Transfer#show</h1>
+<p>Find me in app/views/transfer/show.html.erb</p>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student Id:</b>
+  <%= @transfer.student_id %>
+</p>
+
+<p>
+  <b>Transfer Type:</b>
+  <%= @transfer.transfer_type %>
+</p>
+
+<p>
+  <b>Transfered University Name:</b>
+  <%= @transfer.transfered_university_name %>
+</p>
+
+<p>
+  <b>Transfered Faculty Name:</b>
+  <%= @transfer.transfered_faculty_name %>
+</p>
+<p>
+  <b>Transfered Department Name:</b>
+  <%= @transfer.transfered_department_name %>
+</p>
+<p>
+  <b>Transfered Program:</b>
+  <%= @transfer.transfered_program %>
+</p>
+<p>
+  <b>Transfered Enrollment:</b>
+  <%= @transfer.transfered_enrollment %>
+</p>
+
+
+<%= link_to 'Edit', edit_transfer_path(@transfer) %> |
+

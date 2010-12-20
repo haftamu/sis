@@ -1,13 +1,56 @@
 Sis::Application.routes.draw do
+ 
+ 
+  
+  get "studentsearch/search"
+
+  get "studentsearch/show"
+
+  get "transfer/search"
+
+  get "transfer/with"
+  
+  get "transfer/index"
+
+  get "transfer/new"
+
+  get "transfer/show"
+
+  get "transfer/create"
+
+  get "transfer/destroy"
+
+  get "student_transfer/search"
+
+  get "student_transfer/index"
+
+  get "student_transfer/new"
+
+  get "student_transfer/show"
+
+  get "student_transfer/create"
+
+  get "student_transfer/destroy"
+
+  get "login/search"
+
+  get "login/show"
+
   get "students/index"
 
   get "students/show"
 
   get "students/new"
+  
+  get "students/create"
 
   get "students/edit"
 
   get "students/yaredo"
+  
+  get "students/login_form"
+  
+  get "students/transfer_from_form"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

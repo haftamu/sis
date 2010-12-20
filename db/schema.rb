@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213184805) do
+ActiveRecord::Schema.define(:version => 20101216135702) do
 
   create_table "people", :force => true do |t|
     t.string   "first_name"
@@ -23,11 +23,41 @@ ActiveRecord::Schema.define(:version => 20101213184805) do
     t.string   "mother_name"
   end
 
+  create_table "student_transfers", :force => true do |t|
+    t.string   "transfered_university_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "transfered_faculty_name"
+    t.string   "transfered_department_name"
+    t.string   "transfered_program"
+    t.string   "transfered_enrollment"
+    t.integer  "effective_as_of_semester"
+    t.integer  "effective_as_of_ac_year"
+    t.text     "transfer_reason"
+    t.datetime "application_date"
+  end
+
   create_table "students", :force => true do |t|
     t.integer  "person_id"
     t.string   "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "transfers", :force => true do |t|
+    t.string   "transfered_university_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "transfered_faculty_name"
+    t.string   "transfered_department_name"
+    t.string   "transfered_program"
+    t.string   "transfered_enrollment"
+    t.integer  "effective_as_of_semester"
+    t.integer  "effective_as_of_ac_year"
+    t.text     "transfer_reason"
+    t.datetime "application_date"
+    t.string   "student_id"
+    t.string   "transfer_type"
   end
 
 end
