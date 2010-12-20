@@ -1,59 +1,62 @@
 class StudentsController < ApplicationController
-  def search
-     
-  end
-  
-  def index
-    @student = Student.all
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @student }
-    end
-  end
-  
-  def new
-    @student = Student.new
-   
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @student }
-    end
-  end
-  
-  def create
-    @student = Student.new(params[:student])
-    
-    respond_to do |format|
-      if @student.save
-        format.html { redirect_to(:action => :index) }
-        format.xml  { render :xml => @student, :status => :created, :location => @student  }
-        flash[:notice] = 'Student was successfully created.'
-      else
-        
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-def show
-    @student = Student.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @student }
-    end
-  end
-
-def destroy
-    @student = Student.find(params[:id])
-    @student.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(students_url) }
-      format.xml  { head :ok }
+   def show
+      @person = Person.find(params[:id])
    end
-  end
+  
+   def list
+      
+   end
+   
+   def edit
+     @person = Person.find(params[:id])
+     logger.info("=======params[:id] = #{@person.inspect}=======")
+      #@subjects = Subject.find(:all)
+   end
+   
+   def update
+      @person = Person.find(params[:person][:id])
+      if @person.update_attributes(params[:person])
+         redirect_to :action => 'show', :id => @person
+      else
+         redirect_to :action => "edit", :id => @person
+      end
+   end
+   
+   def delete
+     logger.info("-------value of params[:student]-----"+params[:id])
+     @person = Person.find(params[:id])
+     if @person.destroy
+      redirect_to :action => 'list'
+     end
+   end
 
+    # Create New Student
+    def new
+
+    end
+    def index
+
+    end
+    
+    def save
+      #logger.info("-------value of params[:student]-----"+params[:person].inspect)
+    @person = Person.new(params[:person])
+    
+    if @person.save
+      if @person.student=Student.create(params[:student]) 
+        @stud = @person.student
+        @stud.family_info = FamilyInfo.create(params[:family])
+        @edn=@stud.educational_bgds.new(params[:education]) 
+        @edn.save        
+        #@stud.educational_bgds.save
+        @stud.employement = Employement.create(params[:employment]) 
+        flash[:notice] = "New record successfully saved"
+        render :action => 'list'#, :@id => Person.all
+      end
+    else
+      flash[:notice] = "error while saving this record. Fileds marked * are mandatory"
+      render :action => "list"
+    end  
+  end
 end

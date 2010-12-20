@@ -10,7 +10,58 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20101216135702) do
+=======
+ActiveRecord::Schema.define(:version => 20101216113852) do
+
+  create_table "clearances", :force => true do |t|
+    t.string   "reason_for"
+    t.date     "last_date_attend"
+    t.integer  "class_year"
+    t.integer  "clearance_semister"
+    t.date     "clearance_date"
+    t.text     "reason_for_withdrawal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "student_id"
+  end
+
+  create_table "educational_bgds", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "type"
+    t.string   "institution_name"
+    t.string   "institution_rgn"
+    t.string   "institution_zone"
+    t.string   "institution_town"
+    t.string   "stream"
+    t.string   "reg_num"
+    t.string   "result"
+    t.string   "leaving_reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employements", :force => true do |t|
+    t.integer  "student_id"
+    t.string   "job_type"
+    t.string   "employer_name"
+    t.text     "employer_add"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "family_infos", :force => true do |t|
+    t.integer  "student_id"
+    t.string   "fathers_occ"
+    t.integer  "fathers_ed_level"
+    t.string   "mothers_full_name"
+    t.string   "mothers_occ"
+    t.integer  "mothers_ed_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+>>>>>>> a001f37d3d3a19c8f4484823accaaaa0b1801fd9
 
   create_table "people", :force => true do |t|
     t.string   "first_name"
@@ -18,9 +69,25 @@ ActiveRecord::Schema.define(:version => 20101216135702) do
     t.string   "last_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sex",         :limit => nil
+    t.string   "sex",            :limit => nil
     t.date     "birth_date"
-    t.string   "mother_name"
+    t.string   "amh_full_name"
+    t.string   "photo"
+    t.string   "birth_rgn"
+    t.string   "birth_woreda"
+    t.string   "birth_town"
+    t.string   "birth_kebele"
+    t.string   "nationality"
+    t.integer  "marital_status"
+    t.string   "em_name"
+    t.string   "em_rnship"
+    t.string   "em_rgn"
+    t.string   "em_woreda"
+    t.string   "em_town"
+    t.string   "em_hnum"
+    t.string   "em_tel_res"
+    t.string   "em_tel_office"
+    t.string   "email"
   end
 
   create_table "student_transfers", :force => true do |t|
@@ -39,9 +106,35 @@ ActiveRecord::Schema.define(:version => 20101216135702) do
 
   create_table "students", :force => true do |t|
     t.integer  "person_id"
-    t.string   "student_id"
+    t.string   "stdID"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "disability"
+  end
+
+  create_table "subjects", :force => true do |t|
+    t.integer  "educational_bgd_id"
+    t.string   "name"
+    t.string   "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "undergrad_departments", :force => true do |t|
+    t.string   "departmentname"
+    t.integer  "preference"
+    t.integer  "undergraduate_program_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "undergraduate_programs", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "enrollmenttype"
+    t.string   "programat"
+    t.integer  "band"
+    t.integer  "student_id"
   end
 
   create_table "transfers", :force => true do |t|
