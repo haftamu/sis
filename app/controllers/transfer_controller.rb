@@ -1,8 +1,6 @@
 class TransferController < ApplicationController
   
- #def with
-  #  @transfer = Transfer.new
-   # end
+
   
   def edit #The application receives a request to edit a user. It reads the data into a new User model object.
 

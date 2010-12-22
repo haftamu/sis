@@ -16,7 +16,7 @@ class Transfer < ActiveRecord::Base
   validates :transfered_program, :presence => true
   validates :effective_as_of_ac_year, :presence => true
   validates :transfer_reason, :presence => true
- # validates :effective_as_of_semester, :numericality => {:less_than_or_equal_to => 3}
+  validates :effective_as_of_semester, :numericality => {:less_than_or_equal_to => 3}
   validates_inclusion_of :effective_as_of_semester, :in => 1..3, :message =>"U should insert 1 or 2, or 3"
   validates :effective_as_of_ac_year, :numericality => 1970..2020
 end
