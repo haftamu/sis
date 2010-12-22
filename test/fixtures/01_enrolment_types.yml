@@ -1,9 +1,0 @@
-EnrolmentType:
-  regular:
-    name: Regular
-  extension:
-    name: Extension
-  inservice:
-    name: In-Service
-  distance:
-    name: Distance

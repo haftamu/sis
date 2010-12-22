@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sis</title>
+  <title>Exttrial</title>
   <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "http://localhost/ext/ext_current/ext-all.css" %>
   <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+  <%= csrf_meta_tag %>  
 </head>
 <body>
-
-<%= yield %>
+  <!-- Main wrapper for the window -->
+  <div id="mainWrapper" class="clear" >
+    <!-- Top div section: used for holding data like logo, banner and current user 
+    - Also used to display Horizontal main menu for the application
+    -->
+    <div id="topSection" class="clear" >
+    <div id="logo" class="left"></div>    
+    <h1>Top Content </h1>
+    </div>
+    <!-- Left div section: used for menu display -->
+    <div id="leftSection" class="left">
+      <h2>Menu Area</h2>
+      <%= yield(:menu) %>
+      
+    </div>
+    <!-- The main content display area -->
+    <div id="contentSection" class="left">
+      <!-- the actual container for content -->
+      <div id="contentPane" class="left">
+        <%= yield %>
+      </div>
+    <!-- The right content display area for additional data-->      
+      <div id="rightPane" class="right">
+        <h3>Right pane</h3>
+      </div>
+    </div>
+    <!-- The bottom section display area -->
+    <div id="bottomSection" class="clear">
+        Bottom Section
+    </div>
+      
+  </div>
 
 </body>
 </html>

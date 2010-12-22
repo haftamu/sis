@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101216193426) do
+ActiveRecord::Schema.define(:version => 20101220110406) do
+
+  create_table "academic_calendars", :force => true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "addresses", :force => true do |t|
     t.string   "pobox"
@@ -22,6 +29,24 @@ ActiveRecord::Schema.define(:version => 20101216193426) do
     t.string   "wereda"
     t.string   "kebele"
     t.integer  "student_id"
+    t.string   "house_no"
+    t.string   "subcity"
+  end
+
+  create_table "colleges", :force => true do |t|
+    t.string   "name"
+    t.string   "dean"
+    t.string   "campus"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "departments", :force => true do |t|
+    t.string   "name"
+    t.string   "head"
+    t.integer  "college_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "enrolment_types", :force => true do |t|
@@ -37,15 +62,9 @@ ActiveRecord::Schema.define(:version => 20101216193426) do
   end
 
   create_table "programs", :force => true do |t|
-    t.integer  "enrolment_type"
-    t.integer  "program_type"
+    t.integer  "enrolment_type_id"
+    t.integer  "program_type_id"
     t.string   "attendance"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "simples", :force => true do |t|
-    t.string   "test"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

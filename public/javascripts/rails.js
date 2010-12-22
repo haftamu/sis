@@ -1,175 +1,113 @@
 (function() {
-  // Technique from Juriy Zaytsev
-  // http://thinkweb2.com/projects/prototype/detecting-event-support-without-browser-sniffing/
-  function isEventSupported(eventName) {
-    var el = document.createElement('div');
-    eventName = 'on' + eventName;
-    var isSupported = (eventName in el);
-    if (!isSupported) {
-      el.setAttribute(eventName, 'return;');
-      isSupported = typeof el[eventName] == 'function';
-    }
-    el = null;
-    return isSupported;
-  }
+  Ext.override(Ext.Element, {
+    fireEvent: function(eventName, options) {
+      if (document.createEvent) {
+        // dispatch for firefox + others
+        var event = document.createEvent("HTMLEvents");
+        event.initEvent(eventName, true, true); // event type,bubbling,cancelable
+        event.data = options;
+        return this.dom.dispatchEvent(event);
+      } else {
+        // IE does not support custom events
+        // One way to do it : http://dean.edwards.name/weblog/2009/03/callbacks-vs-events/
+        // but Element.addListener would have to support it
+        throw "Your browser does not support standard DOM events."
+      }
+    },
+    
+    callRemote: function() {
+      var method = this.getAttribute('method') || this.getAttribute('data-method') || 'GET';
+      var url    = this.getAttribute('action') || this.getAttribute('href');
 
-  function isForm(element) {
-    return Object.isElement(element) && element.nodeName.toUpperCase() == 'FORM'
-  }
-
-  function isInput(element) {
-    if (Object.isElement(element)) {
-      var name = element.nodeName.toUpperCase()
-      return name == 'INPUT' || name == 'SELECT' || name == 'TEXTAREA'
-    }
-    else return false
-  }
-
-  var submitBubbles = isEventSupported('submit'),
-      changeBubbles = isEventSupported('change')
-
-  if (!submitBubbles || !changeBubbles) {
-    // augment the Event.Handler class to observe custom events when needed
-    Event.Handler.prototype.initialize = Event.Handler.prototype.initialize.wrap(
-      function(init, element, eventName, selector, callback) {
-        init(element, eventName, selector, callback)
-        // is the handler being attached to an element that doesn't support this event?
-        if ( (!submitBubbles && this.eventName == 'submit' && !isForm(this.element)) ||
-             (!changeBubbles && this.eventName == 'change' && !isInput(this.element)) ) {
-          // "submit" => "emulated:submit"
-          this.eventName = 'emulated:' + this.eventName
+      if (url === undefined) {
+        throw "No URL specified for remote call (action or href must be present).";
+      } else {
+        if (!this.fireEvent("ajax:before")) {
+          return (false);
         }
+        var options = this.is('form') ? {form: this} : {};
+        Ext.Ajax.request(Ext.apply(options, {
+          url: url,
+          method: method.toUpperCase(),
+          scope: this,
+          callback: function(options, success, response) {this.fireEvent("ajax:complete", response)},
+          success: function(response) {this.fireEvent("ajax:success", response)},
+          failure: function(response) {this.fireEvent("ajax:failure", response)}
+        }));
+        this.fireEvent("ajax:after");
       }
-    )
-  }
+    }
+  });
 
-  if (!submitBubbles) {
-    // discover forms on the page by observing focus events which always bubble
-    document.on('focusin', 'form', function(focusEvent, form) {
-      // special handler for the real "submit" event (one-time operation)
-      if (!form.retrieve('emulated:submit')) {
-        form.on('submit', function(submitEvent) {
-          var emulated = form.fire('emulated:submit', submitEvent, true)
-          // if custom event received preventDefault, cancel the real one too
-          if (emulated.returnValue === false) submitEvent.preventDefault()
-        })
-        form.store('emulated:submit', true)
+  Ext.rails = {
+    sendWithDataMethod: function(element) {
+      var templateValues = {method: element.getAttribute('data-method'),
+                            href  : element.getAttribute('href')};
+      var csrfParam      = Ext.select('meta[name=csrf-param]').item(0);
+      var csrfToken      = Ext.select('meta[name=csrf-token]').item(0);
+      var formTemplate   = ['<form style="display:none" method="post" action="{href}">',
+                            '<input name="_method" value="{method}" type="hidden" />',
+                            '</form>'];
+      var csrfTemplate   = '<input name="{csrfParam}" value="{csrfToken}" type="hidden" />';
+
+      if (csrfParam != null && csrfToken != null) {
+        formTemplate.splice(2, 0, csrfTemplate);
+        Ext.apply(templateValues, {csrfParam: csrfParam.getAttribute('content'),
+                                   csrfToken: csrfToken.getAttribute('content')});
       }
-    })
-  }
+      
+      var template = new Ext.Template(formTemplate);
+      var form = template.append(Ext.getBody(), templateValues);
+      form.submit();
+    },
 
-  if (!changeBubbles) {
-    // discover form inputs on the page
-    document.on('focusin', 'input, select, texarea', function(focusEvent, input) {
-      // special handler for real "change" events
-      if (!input.retrieve('emulated:change')) {
-        input.on('change', function(changeEvent) {
-          input.fire('emulated:change', changeEvent, true)
-        })
-        input.store('emulated:change', true)
+    onClick: function(event, element) {
+      var element     = Ext.get(element);
+      var dataConfirm = element.getAttribute('data-confirm');
+      var dataRemote  = element.getAttribute('data-remote');
+      var dataMethod  = element.getAttribute('data-method');
+
+      if (!dataConfirm || confirm(dataConfirm)) {
+        if (dataRemote) {
+          event.preventDefault();
+          element.callRemote();
+        } else if (dataMethod) {
+          event.preventDefault();
+          Ext.rails.sendWithDataMethod(element);
+        }
+      } else {
+        event.stopEvent();
       }
-    })
+    },
+
+    disableWithInput: function(event, element) {
+      Ext.fly(element).select('input[data-disable-with]').each(function(input) {
+        input.set({'enable-with': input.getValue()}, false);
+        input.set({value   : input.getAttribute('data-disable-with'),
+                   disabled: 'disabled'});
+      });
+    },
+
+    enableWithInput: function(event, element) {
+      Ext.fly(element).select('input[data-disable-with]').each(function(input) {
+        input.set({value: input.getAttribute('enable-with')});
+        input.set({disabled: false}, false);
+      });
+    }
   }
-
-  function handleRemote(element) {
-    var method, url, params;
-
-    var event = element.fire("ajax:before");
-    if (event.stopped) return false;
-
-    if (element.tagName.toLowerCase() === 'form') {
-      method = element.readAttribute('method') || 'post';
-      url    = element.readAttribute('action');
-      params = element.serialize();
-    } else {
-      method = element.readAttribute('data-method') || 'get';
-      url    = element.readAttribute('href');
-      params = {};
-    }
-
-    new Ajax.Request(url, {
-      method: method,
-      parameters: params,
-      evalScripts: true,
-
-      onComplete:    function(request) { element.fire("ajax:complete", request); },
-      onSuccess:     function(request) { element.fire("ajax:success",  request); },
-      onFailure:     function(request) { element.fire("ajax:failure",  request); }
-    });
-
-    element.fire("ajax:after");
-  }
-
-  function handleMethod(element) {
-    var method = element.readAttribute('data-method'),
-        url = element.readAttribute('href'),
-        csrf_param = $$('meta[name=csrf-param]')[0],
-        csrf_token = $$('meta[name=csrf-token]')[0];
-
-    var form = new Element('form', { method: "POST", action: url, style: "display: none;" });
-    element.parentNode.insert(form);
-
-    if (method !== 'post') {
-      var field = new Element('input', { type: 'hidden', name: '_method', value: method });
-      form.insert(field);
-    }
-
-    if (csrf_param) {
-      var param = csrf_param.readAttribute('content'),
-          token = csrf_token.readAttribute('content'),
-          field = new Element('input', { type: 'hidden', name: param, value: token });
-      form.insert(field);
-    }
-
-    form.submit();
-  }
-
-
-  document.on("click", "*[data-confirm]", function(event, element) {
-    var message = element.readAttribute('data-confirm');
-    if (!confirm(message)) event.stop();
-  });
-
-  document.on("click", "a[data-remote]", function(event, element) {
-    if (event.stopped) return;
-    handleRemote(element);
-    event.stop();
-  });
-
-  document.on("click", "a[data-method]", function(event, element) {
-    if (event.stopped) return;
-    handleMethod(element);
-    event.stop();
-  });
-
-  document.on("submit", function(event) {
-    var element = event.findElement(),
-        message = element.readAttribute('data-confirm');
-    if (message && !confirm(message)) {
-      event.stop();
-      return false;
-    }
-
-    var inputs = element.select("input[type=submit][data-disable-with]");
-    inputs.each(function(input) {
-      input.disabled = true;
-      input.writeAttribute('data-original-value', input.value);
-      input.value = input.readAttribute('data-disable-with');
-    });
-
-    var element = event.findElement("form[data-remote]");
-    if (element) {
-      handleRemote(element);
-      event.stop();
-    }
-  });
-
-  document.on("ajax:after", "form", function(event, element) {
-    var inputs = element.select("input[type=submit][disabled=true][data-disable-with]");
-    inputs.each(function(input) {
-      input.value = input.readAttribute('data-original-value');
-      input.removeAttribute('data-original-value');
-      input.disabled = false;
-    });
-  });
+  
+  Ext.getBody().on("click", Ext.rails.onClick, this,
+                   {delegate: 'a:any([data-confirm]|[data-remote]|[data-method])'});
+  Ext.getBody().on("click", Ext.rails.onClick, this,
+                   {delegate: 'input:any([data-confirm]|[data-remote])'});
+  Ext.getBody().on("submit", Ext.rails.onClick, this,
+                   {delegate: 'form[data-remote]'});
+  Ext.getBody().on('ajax:before', Ext.rails.disableWithInput, this,
+                   {delegate: 'form[data-remote]:has(input[data-disable-with])'});
+  // selector should be form:not([data-remote]):has(input[data-disable-with])
+  // but pseudo selectors chaining does not seem to work 
+  Ext.getBody().on('submit', Ext.rails.disableWithInput, this,
+                   {delegate: 'form:has(input[data-disable-with])'});
+  Ext.getBody().on('ajax:complete', Ext.rails.enableWithInput, this,
+                   {delegate: 'form:has(input[data-disable-with])'});
 })();

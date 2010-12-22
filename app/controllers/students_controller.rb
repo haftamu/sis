@@ -3,10 +3,10 @@ class StudentsController < ApplicationController
   # GET /students.xml
   def index
     @students = Student.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @students }
+      format.json  { render :json => @students }
     end
   end
 
@@ -31,6 +31,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @student }
+      format.json  { render :json => @student }
     end
   end
 

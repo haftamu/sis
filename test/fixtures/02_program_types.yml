@@ -1,7 +1,0 @@
-ProgramType:
-  degree:
-    name: Degree
-  masters:
-    name: Masters
-  phd:
-    name: Phd

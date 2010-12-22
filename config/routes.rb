@@ -1,10 +1,6 @@
 Sis::Application.routes.draw do
   resources :students
-  get "hassicho/hassicho/"
-
-   get "students/students"
-   
-  #get "student/new"
+    
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

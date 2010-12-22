@@ -40,6 +40,7 @@ describe Student do
       s.batch_year =2003     
       s.batch_year.should_not be_blank
     end
+    
   end
 
 end
