@@ -1,0 +1,16 @@
+<div class='address clear' >
+  <%= fields_for "student[address_attributes][]", address do | address_form | %>
+  <div class='address_fields'>
+    <div class="clear">
+      Wereda : <%= address_form.text_field :wereda %> 
+      Kebele : <%= address_form.text_field :kebele %>
+    </div>        
+    <div class="clear">
+      House No : <%= address_form.text_field :house_no %>
+      Subcity : <%= address_form.text_field :subcity %>    
+    </div>
+    <%= link_to_function "Remove" , "this.up('.address').remove()"%>
+  </div>
+  <% end %>           
+</div>  
+

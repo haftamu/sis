@@ -1,0 +1,84 @@
+/* */
+/*Common styles */
+.no_format{
+  margin:1px;
+  padding: 0px; 
+  clear: both;
+  float: none;
+}
+
+*{
+  margin:1px;
+/*  padding: 0px;*/
+/*  clear: both;*/
+  float: none;
+}
+.clear{ float: none; clear: both;}
+.left{float: left !important;}
+.right {float:right !important;}.
+
+/*Wrappers*/
+#mainWrapper{
+  border: 1px solid #999;  
+  margin: 20px; 
+  padding:2px;
+  
+}
+#topSection{
+  border: 1px solid #999;  
+  margin: 2px;  
+  min-height:80px;
+}
+#leftSection{
+  border: 1px solid #999;  
+  width:18% !important;
+  margin: 2px;
+  /*min-height:450px;*/
+}
+#contentSection{
+  border: 1px solid #999;  
+  width:81% !important;
+  margin: 2px;  
+}
+#contentPane{
+  border: 1px solid #999;  
+  width:85%;
+  /*min-height:450px;*/
+}
+#rightPane{
+  border: 1px solid #999;  
+  margin: 1px;  
+  width:14%;
+}
+#bottomSection{
+  border: 1px solid #999;  
+  margin: 2px;  
+}
+
+/*min-height for left menu and contentSection*/
+#contentSection,
+#leftSection{
+  min-height:480px; 
+}
+#contentPane,
+#rightPane{
+  min-height:480px;
+}
+/*Logo*/
+#logo{
+  background-image: url("../images/mu_icon_64.png");
+  
+}
+#preField,
+#student_address{
+  margin: 0px;
+  padding:0px;
+}
+
+.address_fields{
+  display: block;
+  margin: 3px;
+  border:1px solid #999;
+  
+  
+}
