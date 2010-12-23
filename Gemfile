@@ -6,6 +6,12 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+# netzke-core and netzke-basepack gems for inclusion of ExtJS 
+gem 'netzke-core',  :git => "git://github.com/skozlov/netzke-core.git"
+gem 'netzke-basepack', :git => "git://github.com/skozlov/netzke-basepack.git"
+
+gem  'will_paginate', '~>3.0.pre2'
+
 # We will enable this database when we actually use it 
 #gem 'postgresql', :require => 'postgresql'
 

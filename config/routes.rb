@@ -1,7 +1,90 @@
-Sis::Application.routes.draw do
-  resources :students
-    
+Sis::Application.routes.draw do  
+  get "studentsearch/search"
+
+  get "studentsearch/show"
+
+  get "transfer/search"
+
+  get "transfer/with"
   
+  get "transfer/index"
+
+  get "transfer/new"
+
+  get "transfer/show"
+
+  get "transfer/create"
+
+  get "transfer/destroy"
+
+  get "student_transfer/search"
+
+  get "student_transfer/index"
+
+  get "student_transfer/new"
+
+  get "student_transfer/show"
+
+  get "student_transfer/create"
+
+  get "student_transfer/destroy"
+
+  get "login/search"
+
+  get "login/show"
+ 
+ get "students/index"
+ resources :clearance
+  get "students/index"
+
+  get "students/show"
+  
+  get "students/search"
+
+  get "students/new"
+
+  get "students/create"
+
+ post "students/save"
+  
+  get "students/list"
+  
+  get "students/show"
+  
+  get "students/edit"
+  
+  
+  get "undergraduate_program/new"
+  post "undergraduate_program/Add"
+  post"undergraduate_program/create"
+  get "undergraduate_program/show_department"
+  post "undergraduate_program/create_department"
+  post "undergraduate_program/show"
+  get "undergraduate_program/show"
+  
+  get "undergrad_department/new"
+  
+  get "undergraduate_program/edit"
+
+   get "students/search"
+   
+  
+  
+  get "clearance/show"
+  get "clearance/new"
+  post "clearance/create"
+  post "clearance/update"
+  get "clearance/edit"
+  get "clearance/searchresult"
+  get "clearance/search"
+  get "students/yaredo"
+  
+  get "students/login_form"
+  
+  get "students/transfer_from_form"
+  get "students/update"
+  
+  get "students/delete"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -65,8 +65,8 @@
   min-height:480px;
 }
 /*Logo*/
-#logo{
-  background-image: url("../images/mu_icon_64.png");
+#mu_logo{
+  background-image: url("/images/mu_icon_64.png");
   
 }
 #preField,

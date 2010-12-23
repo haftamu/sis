@@ -1,0 +1,71 @@
+<<<<<<< HEAD
+<p id="notice"><%= notice %></p>
+<pre>
+<div id="student_profile">
+<%= @student.inspect %>
+</div>
+</pre>
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
+=======
+<<<<<<< HEAD
+<h1>Students#show</h1>
+<p>Find me in app/views/students/show.html.erb</p>
+
+=======
+<center><h3><%= @person.first_name+"\'s profile" %></h3>
+<hr />
+<br><table><tr><td><strong>First Name: </strong> </td>
+               <td><%= @person.first_name %></td></tr>
+           <tr><td><strong>Last Name :</strong> </td>
+               <td><%= @person.middle_name %></td></tr>
+           <tr><td><strong>Sex :</strong> </td>
+               <td><%= @person.sex %></td></tr>
+           <tr><td><strong>Date of birth:</strong> </td>
+               <td><%= @person.birth_date %></td></tr>
+           <tr><td><strong>Email:</strong></td>
+               <td><%= @person.email %></td></tr>
+    </table>
+<br>
+<hr />
+
+<%= link_to 'Back to list of students', {:action => 'list'} %></center>
+
+<!--<h1>Students#show</h1>-->
+<!--<p>Find me in app/views/students/show.html.erb</p>-->
+
+
+
+<!--<%= @person.inspect %>
+<%= @stud.inspect %><br/><br/>-->
+
+  <p> Search results </p>
+<% if @student.empty? %>
+  <p> No such Record </p> 
+<% else %>
+  <table border="+1">
+    <tr>
+      <td>ID Number</td>
+      <td>Name</td>
+      <td>Middle Name</td>
+      <td>Last Name</td>
+      <td>Sex</td>
+
+    </tr>
+    
+    <% for student in @student %>
+       <tr>
+      <td><%= student.id_number %></td>
+      <td><%= student.first_name %></td>
+      <td><%= student.middle_name %></td>
+      <td><%= student.last_name %></td>
+      <td><%= student.sex %></td>
+      </tr>
+    <% end %>
+   
+  </table>
+<% end %>
+
+<%= link_to 'Back to Search', :action => 'search' %>
+>>>>>>> a001f37d3d3a19c8f4484823accaaaa0b1801fd9
+>>>>>>> 709a478c42312b8656ab1cdebebb8f8769c32b0b
