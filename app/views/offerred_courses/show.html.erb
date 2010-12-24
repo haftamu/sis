@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Course:</b>
+  <%= @offerred_course.course.title_with_code %>
+</p>
+
+<p>
+  <b>Semester:</b>
+  <%= @offerred_course.semester.full_semester_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_offerred_course_path(@offerred_course) %> |
+<%= link_to 'Back', offerred_courses_path %>

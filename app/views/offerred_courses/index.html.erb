@@ -1,0 +1,27 @@
+<h1>Listing offerred_courses</h1>
+
+<table>
+  <tr>
+    <th>Department</th>
+    <th>Course</th>
+    <th>Semester</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @offerred_courses.each do |offerred_course| %>
+  <tr>
+    <td><%= offerred_course.course.department.name %></td>
+    <td><%= offerred_course.course_title %></td>
+    <td><%= offerred_course.semester.full_semester_name%></td>
+    <td><%= link_to 'Show', offerred_course %></td>
+    <td><%= link_to 'Edit', edit_offerred_course_path(offerred_course) %></td>
+    <td><%= link_to 'Destroy', offerred_course, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Offerred course', new_offerred_course_path %>

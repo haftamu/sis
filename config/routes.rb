@@ -1,90 +1,42 @@
 Sis::Application.routes.draw do  
-  get "studentsearch/search"
-
-  get "studentsearch/show"
-
-  get "transfer/search"
-
-  get "transfer/with"
   
-  get "transfer/index"
+  resources :enrollment_types
 
-  get "transfer/new"
+ # get "students/index"
 
-  get "transfer/show"
+ # get "students/show"
 
-  get "transfer/create"
+ # get "students/edit"
 
-  get "transfer/destroy"
-
-  get "student_transfer/search"
-
-  get "student_transfer/index"
-
-  get "student_transfer/new"
-
-  get "student_transfer/show"
-
-  get "student_transfer/create"
-
-  get "student_transfer/destroy"
-
-  get "login/search"
-
-  get "login/show"
+ # get "students/new"
  
- get "students/index"
- resources :clearance
-  get "students/index"
+  
+  resources :students
+  
+  resources :program_types
 
-  get "students/show"
-  
-  get "students/search"
+  resources :enrolment_types
 
-  get "students/new"
+  resources :admission_types
 
-  get "students/create"
+  resources :offerred_courses
 
- post "students/save"
-  
-  get "students/list"
-  
-  get "students/show"
-  
-  get "students/edit"
-  
-  
-  get "undergraduate_program/new"
-  post "undergraduate_program/Add"
-  post"undergraduate_program/create"
-  get "undergraduate_program/show_department"
-  post "undergraduate_program/create_department"
-  post "undergraduate_program/show"
-  get "undergraduate_program/show"
-  
-  get "undergrad_department/new"
-  
-  get "undergraduate_program/edit"
+  resources :course_prerequisites
 
-   get "students/search"
-   
-  
-  
-  get "clearance/show"
-  get "clearance/new"
-  post "clearance/create"
-  post "clearance/update"
-  get "clearance/edit"
-  get "clearance/searchresult"
-  get "clearance/search"
-  get "students/yaredo"
-  
-  get "students/login_form"
-  
-  get "students/transfer_from_form"
-  get "students/update"
-  
-  get "students/delete"
+  resources :courses
+
+  resources :semesters
+
+  resources :academic_calendars
+
+  resources :departments
+
+  resources :colleges
+
+  get "welcome/index"
+
+  resources :campus
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -134,7 +86,8 @@ Sis::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+
+  root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 

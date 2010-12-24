@@ -1,0 +1,27 @@
+<h1>Listing campus</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th> Total Colleges</th>
+  </tr>
+
+<% @campus.each do |campu| %>
+  <tr>
+    <td><%= campu.name %></td>
+    <td><%= link_to 'Show', campu %></td>
+    <td><%= link_to 'Edit', edit_campu_path(campu) %></td>
+    <td><%= link_to 'Destroy', campu, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to '('+campu.total_colleges.to_s+')',
+        :controller => 'colleges',:action => 'index'        
+    %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Campus', new_campu_path %>

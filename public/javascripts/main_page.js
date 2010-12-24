@@ -1,4 +1,4 @@
-    Ext.onReady(function(){
+ Ext.onReady(function(){
     
         // NOTE: This is an example showing simple state management. During development,
         // it is generally best to disable state management as dynamically-generated ids
@@ -15,7 +15,7 @@
                 height: 66, // give north and south regions a height
                 autoEl: {
                     tag: 'div',
-                    //html:'<img src=\'/images/mu_icon_64.png\' style=\'float:left\'/><h1 style=\'float:left\'>Mekelle University</h1>'
+                    //html:'<p>north - generally for menus, toolbars and/or advertisements</p>'
                 }
             }), {
                 // lazily created panel (xtype:'panel' is default)
@@ -26,15 +26,15 @@
                 minSize: 100,
                 maxSize: 200,
                 collapsible: true,
-                title: 'Footer',
+                //title: 'Footer',
                 margins: '0 0 0 0'
-            }, {
+            }/*, {
                 region: 'east',
-                title: 'Additionals',
+                title: 'East Side',
                 collapsible: true,
                 split: true,
-                width: 150, // give east and west regions a width
-                minSize: 150,
+                width: 225, // give east and west regions a width
+                minSize: 175,
                 maxSize: 400,
                 margins: '0 5 0 0',
                 layout: 'fit', // specify layout manager for items
@@ -47,8 +47,7 @@
                         html: '<p>A TabPanel component can be a region.</p>',
                         title: 'A Tab',
                         autoScroll: true
-                    }
-                    /*, new Ext.grid.PropertyGrid({
+                    }, new Ext.grid.PropertyGrid({
                         title: 'Property Grid',
                         closable: true,
                         source: {
@@ -61,9 +60,9 @@
                             "version": 0.01,
                             "borderWidth": 1
                         }
-                    })*/]
+                    })]
                 })
-            }, {
+            }*/, {
                 region: 'west',
                 id: 'west-panel', // see Ext.getCmp() below
                 title: 'Menu Area',
@@ -72,22 +71,45 @@
                 minSize: 175,
                 maxSize: 400,
                 collapsible: true,
+                activeItem:1,
                 margins: '0 0 0 5',
                 layout: {
                     type: 'accordion',
                     animate: true
                 },
-                items: [{
+                items: [
+                {
+                    contentEl: 'basic_setup',
+                    title: 'Basic Setup',
+                    border: false,
+                    iconCls: 'nav' // see the HEAD section for style used
+                },
+                {
                     contentEl: 'west',
+                    title: 'MU Forms',
+                    border: false,
+                    iconCls: 'nav' // see the HEAD section for style used
+                },
+                /*{
+                    contentEl: 'west_south',
                     title: 'Navigation',
                     border: false,
                     iconCls: 'nav' // see the HEAD section for style used
-                }, {
-                    title: 'Settings',
-                    html: '<p>Some settings in here.</p>',
+                },*/
+                {
+                    contentEl: 'student_menu',
+                    title: 'Student Menu',
+                    border: false,
+                    iconCls: 'nav' // see the HEAD section for style used
+                }
+                
+                /*{
+                    id:'mu_forms',
+                    title: 'Forms Menu',
+                    //html: '<p>Some settings in here.</p>',
                     border: false,
                     iconCls: 'settings'
-                }]
+                }*/]
             },
             // in this instance the TabPanel is not wrapped by another panel
             // since no title is needed, this Panel is added directly
@@ -96,15 +118,14 @@
                 region: 'center', // a center region is ALWAYS required for border layout
                 deferredRender: false,
                 activeTab: 0,     // first tab initially active
-                items: [
-                    /*{
+                items: [/*{
                     contentEl: 'center1',
                     title: 'Close Me',
                     closable: true,
                     autoScroll: true
                 },*/ {
                     contentEl: 'center2',
-                    title: '<%=title %>',
+                    title: 'Details',
                     autoScroll: true
                 }]
             })]

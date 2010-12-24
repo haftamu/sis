@@ -1,11 +1,5 @@
 require 'spec_helper'
 
 describe "students/show.html.erb" do
-  before(:each) do
-    @student = assign(:student, stub_model(Student))
-  end
-
-  it "renders attributes in <p>" do
-    render
-  end
+  pending "add some examples to (or delete) #{__FILE__}"
 end

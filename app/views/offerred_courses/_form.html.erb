@@ -1,0 +1,25 @@
+<%= form_for(@offerred_course) do |f| %>
+  <% if @offerred_course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@offerred_course.errors.count, "error") %> prohibited this offerred_course from being saved:</h2>
+
+      <ul>
+      <% @offerred_course.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :course_id %><br />
+    <%= f.collection_select(:course_id,@courses,:id,:title_with_code) %>
+  </div>
+  <div class="field">
+    <%= f.label :semester_id %><br />
+    <%= f.collection_select(:semester_id,@semesters,:id,:full_semester_name) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

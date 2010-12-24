@@ -1,13 +1,12 @@
+<<<<<<< HEAD
+Sis::Application.routes.draw do  
+=======
 Sis::Application.routes.draw do
 <<<<<<< HEAD
-  resources :students
-    
-  
-=======
-<<<<<<< HEAD
  
  
   
+>>>>>>> 709a478c42312b8656ab1cdebebb8f8769c32b0b
   get "studentsearch/search"
 
   get "studentsearch/show"
@@ -41,12 +40,18 @@ Sis::Application.routes.draw do
   get "login/search"
 
   get "login/show"
+<<<<<<< HEAD
+ 
+ get "students/index"
+ resources :clearance
+=======
 
 =======
  #resources :students 
  get "students/index"
  resources :clearance
 >>>>>>> a001f37d3d3a19c8f4484823accaaaa0b1801fd9
+>>>>>>> 709a478c42312b8656ab1cdebebb8f8769c32b0b
   get "students/index"
 
   get "students/show"
@@ -58,14 +63,22 @@ Sis::Application.routes.draw do
   
   get "students/create"
 
+<<<<<<< HEAD
+  get "students/create"
+
 =======
+=======
+>>>>>>> 709a478c42312b8656ab1cdebebb8f8769c32b0b
  post "students/save"
   
   get "students/list"
   
   get "students/show"
   
+<<<<<<< HEAD
+=======
 >>>>>>> a001f37d3d3a19c8f4484823accaaaa0b1801fd9
+>>>>>>> 709a478c42312b8656ab1cdebebb8f8769c32b0b
   get "students/edit"
   
   
@@ -80,6 +93,20 @@ Sis::Application.routes.draw do
   get "undergrad_department/new"
   
   get "undergraduate_program/edit"
+<<<<<<< HEAD
+
+   get "students/search"
+   
+  
+  
+  get "clearance/show"
+  get "clearance/new"
+  post "clearance/create"
+  post "clearance/update"
+  get "clearance/edit"
+  get "clearance/searchresult"
+  get "clearance/search"
+=======
 
    get "students/search"
    
@@ -95,11 +122,17 @@ Sis::Application.routes.draw do
 
 
 <<<<<<< HEAD
+>>>>>>> 709a478c42312b8656ab1cdebebb8f8769c32b0b
   get "students/yaredo"
   
   get "students/login_form"
   
   get "students/transfer_from_form"
+<<<<<<< HEAD
+  get "students/update"
+  
+  get "students/delete"
+=======
 =======
   get "students/update"
   

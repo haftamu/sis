@@ -9,36 +9,56 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-    <!-- use class="x-hide-display" to prevent a brief flicker of the content -->
-    <div id='north'>
+   <!-- Main Content -->
+   <div id='north'>
         <div class='left'>
             <img src='/images/mu_icon_64.png'/>
             <img src='/images/mu_text.png'/>
         </div>
     </div>
+    <!-- Basic setup menu-->
+    <div id="basic_setup">
+        <%= link_to('Academic Calendar','/academic_calendars/') %><br/>
+        <%= link_to('Semesters','/semesters/') %><br/>
+        <%= link_to('Admission Types','/admission_types/') %><br/>  
+        <%= link_to('Campus','/campus/') %><br/>
+        <%= link_to('Colleges','/colleges/') %><br/>
+        <%= link_to('Departments','/departments/') %><br/>
+        <%= link_to('Courses','/courses/') %><br/>
+        <%= link_to('Prerequisites','/course_prerequisites/') %><br/>
+        <%= link_to('Offerred Courses','/offerred_courses/') %><br/>
+        <%= link_to('Yared Courses','/yared/') %><br/>
+    </div>
     <div id="west" class="x-hide-display">
+         <div>
+            <%= link_to('Admission Application','/admissions/new') %><br/>
+            <%= link_to('Registration') %><br/>
+            <%= link_to('Enrollment') %><br/>
+            <%= link_to('Clearance and Withdrawal') %><br/>
+            <%= link_to('Transfer','/transfers/new') %><br/>
+        </div>    
+    </div>
+    
+    <div id='student_menu'>           
+        <%= link_to('Create Profile','/students/new') %><br/>
+        <%= link_to('Courses','/courses/') %><br/>
+        <%= link_to('Grade','/grades/') %><br/>
         
-        <%= yield(:menu) %>
-        <%= link_to('Clearance','/clearance/new') %><br/>
-         <%= link_to('Undergrd','/undergraduate_program/new') %><br/>
-        <%= link_to('Students','/students/new') %>
     </div>
     <div id="center2" class="x-hide-display">
-        <%= yield %>
-        
-        
+        <%= yield %>        
     </div>
     
     <div id="props-panel" class="x-hide-display" style="width:200px;height:200px;overflow:hidden;">
-
     </div>
+    <div id="mu_forms" class="x-hide-display">
+        Insert mu forms here
+    </div>
+
     <div id="south" class="x-hide-display">
-        <pre>
-            Mekelle University :
-             - Comments
-             - Footer links
-        </pre>
+        <center><small>Mekelle Univerisity Gemhalo! project</small></center>
     </div>
 
+   <!-- End of Main Content -->
 </body>
 </html>
