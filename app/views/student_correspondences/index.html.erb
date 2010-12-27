@@ -1,0 +1,23 @@
+<h1>Listing student_correspondences</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @student_correspondences.each do |student_correspondence| %>
+  <tr>
+    <td><%= student_correspondence.student_id %></td>
+    <td><%= link_to 'Show', student_correspondence %></td>
+    <td><%= link_to 'Edit', edit_student_correspondence_path(student_correspondence) %></td>
+    <td><%= link_to 'Destroy', student_correspondence, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student correspondence', new_student_correspondence_path %>

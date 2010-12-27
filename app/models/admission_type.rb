@@ -1,4 +1,4 @@
 class AdmissionType < ActiveRecord::Base
-    has_many :enrolment_types
-    has_many :program_types
+    belongs_to :enrollment_type
+    belongs_to :program_type
 end

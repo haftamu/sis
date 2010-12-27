@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101223233652) do
+ActiveRecord::Schema.define(:version => 20101224185711) do
 
   create_table "academic_calendars", :force => true do |t|
     t.date     "start_date"
@@ -19,11 +19,29 @@ ActiveRecord::Schema.define(:version => 20101223233652) do
     t.datetime "updated_at"
   end
 
+  create_table "academic_professional_qualifications", :force => true do |t|
+    t.datetime "date"
+    t.string   "certificate_attachment"
+    t.integer  "admission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "admission_types", :force => true do |t|
-    t.integer  "enrolment_type_id"
+    t.integer  "enrollment_type_id"
     t.integer  "program_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "admissions", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "academic_calendar_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "program_type_id"
+    t.integer  "enrollment_type_id"
+    t.string   "entry_level"
   end
 
   create_table "campus", :force => true do |t|
@@ -56,6 +74,12 @@ ActiveRecord::Schema.define(:version => 20101223233652) do
     t.datetime "updated_at"
   end
 
+  create_table "department_choices", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.integer  "college_id"
@@ -63,8 +87,43 @@ ActiveRecord::Schema.define(:version => 20101223233652) do
     t.datetime "updated_at"
   end
 
-  create_table "enrolment_types", :force => true do |t|
+  create_table "educational_backgrounds", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employment_backgrounds", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enrollment_types", :force => true do |t|
     t.string   "name"
+    t.string   "mode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "family_backgrounds", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "financial_supports", :force => true do |t|
+    t.string   "support_type"
+    t.string   "Name"
+    t.string   "address"
+    t.string   "financial_attachment"
+    t.integer  "admission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "higer_education_backgrounds", :force => true do |t|
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,11 +147,45 @@ ActiveRecord::Schema.define(:version => 20101223233652) do
     t.string   "mother_tounge"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "marital_status"
+  end
+
+  create_table "person_addresses", :force => true do |t|
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "person_contacts", :force => true do |t|
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "program_types", :force => true do |t|
     t.string   "name"
-    t.string   "mode"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "referees", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.integer  "admission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relevant_publications", :force => true do |t|
+    t.string   "description"
+    t.integer  "admission_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "research_teaching_experiences", :force => true do |t|
+    t.string   "description"
+    t.integer  "admission_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,6 +195,36 @@ ActiveRecord::Schema.define(:version => 20101223233652) do
     t.integer  "academic_calendar_id"
     t.date     "start_date"
     t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_correspondences", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_experiences", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_publications", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_qualifications", :force => true do |t|
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_referees", :force => true do |t|
+    t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

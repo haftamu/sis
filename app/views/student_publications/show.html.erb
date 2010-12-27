@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student:</b>
+  <%= @student_publication.student_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_publication_path(@student_publication) %> |
+<%= link_to 'Back', student_publications_path %>

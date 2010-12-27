@@ -1,3 +1,4 @@
 class ProgramType < ActiveRecord::Base
-    belongs_to :admission_type
+    has_many :admission_types
+
 end

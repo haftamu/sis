@@ -1,6 +1,6 @@
 <h1>Listing admission_types</h1>
 
-<table>
+<table border=1>
   <tr>
     <th>Enrolment type</th>
     <th>Program type</th>
@@ -11,8 +11,8 @@
 
 <% @admission_types.each do |admission_type| %>
   <tr>
-    <td><%= admission_type.enrolment_type_id %></td>
-    <td><%= admission_type.program_type_id %></td>
+    <td><%= admission_type.enrollment_type.full_name %></td>
+    <td><%= admission_type.program_type.name %></td>
     <td><%= link_to 'Show', admission_type %></td>
     <td><%= link_to 'Edit', edit_admission_type_path(admission_type) %></td>
     <td><%= link_to 'Destroy', admission_type, :confirm => 'Are you sure?', :method => :delete %></td>

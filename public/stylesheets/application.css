@@ -221,8 +221,13 @@ a:hover {
   font-size: 12px;
   list-style: square;
 }
+table tr th{
+    background:#efefef;
+}
 table, tr, td
 {
+    border-collapse:collapse;
+    font-size:12pt;
 /*
     border:1px solid black;
     padding:0px;

@@ -1,0 +1,23 @@
+<h1>Listing educational_backgrounds</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @educational_backgrounds.each do |educational_background| %>
+  <tr>
+    <td><%= educational_background.student_id %></td>
+    <td><%= link_to 'Show', educational_background %></td>
+    <td><%= link_to 'Edit', edit_educational_background_path(educational_background) %></td>
+    <td><%= link_to 'Destroy', educational_background, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Educational background', new_educational_background_path %>

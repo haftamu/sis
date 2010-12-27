@@ -1,0 +1,23 @@
+<h1>Listing student_experiences</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @student_experiences.each do |student_experience| %>
+  <tr>
+    <td><%= student_experience.student_id %></td>
+    <td><%= link_to 'Show', student_experience %></td>
+    <td><%= link_to 'Edit', edit_student_experience_path(student_experience) %></td>
+    <td><%= link_to 'Destroy', student_experience, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student experience', new_student_experience_path %>

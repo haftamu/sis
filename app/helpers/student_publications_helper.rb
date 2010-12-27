@@ -1,0 +1,2 @@
+module StudentPublicationsHelper
+end

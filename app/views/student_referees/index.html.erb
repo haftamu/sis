@@ -1,0 +1,23 @@
+<h1>Listing student_referees</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @student_referees.each do |student_referee| %>
+  <tr>
+    <td><%= student_referee.student_id %></td>
+    <td><%= link_to 'Show', student_referee %></td>
+    <td><%= link_to 'Edit', edit_student_referee_path(student_referee) %></td>
+    <td><%= link_to 'Destroy', student_referee, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student referee', new_student_referee_path %>

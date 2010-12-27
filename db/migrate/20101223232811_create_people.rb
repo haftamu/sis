@@ -5,7 +5,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :father_name
       t.string :grand_father_name
       t.string :sex
-      t.date :birth_date
+      t.date   :birth_date
       t.string :mother_full_name
       t.string :nationality
       t.string :ethnic_group

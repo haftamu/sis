@@ -1,0 +1,21 @@
+<%= form_for(@employment_background) do |f| %>
+  <% if @employment_background.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employment_background.errors.count, "error") %> prohibited this employment_background from being saved:</h2>
+
+      <ul>
+      <% @employment_background.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :student_id %><br />
+    <%= f.text_field :student_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

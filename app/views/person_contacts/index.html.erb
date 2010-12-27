@@ -1,0 +1,23 @@
+<h1>Listing person_contacts</h1>
+
+<table>
+  <tr>
+    <th>Person</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @person_contacts.each do |person_contact| %>
+  <tr>
+    <td><%= person_contact.person_id %></td>
+    <td><%= link_to 'Show', person_contact %></td>
+    <td><%= link_to 'Edit', edit_person_contact_path(person_contact) %></td>
+    <td><%= link_to 'Destroy', person_contact, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Person contact', new_person_contact_path %>

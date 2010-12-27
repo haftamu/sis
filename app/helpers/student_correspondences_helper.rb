@@ -1,0 +1,2 @@
+module StudentCorrespondencesHelper
+end

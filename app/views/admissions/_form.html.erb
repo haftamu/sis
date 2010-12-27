@@ -1,0 +1,73 @@
+<%= form_for(@admission) do |f| %>
+  <% if @admission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admission.errors.count, "error") %> prohibited this admission from being saved:</h2>
+
+      <ul>
+      <% @admission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset id="basic_info"><legend>Basic Information</legend>
+
+    <%= f.label :academic_calendar_id %><br />
+    <%= f.collection_select(:academic_calendar_id,@academic_calendars,:id,:name) %>
+
+  <!-- TODO :  based on the selected academic calendar select all the program types and enrollment types -->
+
+    <%= f.label :enrollment_type %><br />
+    <%= f.collection_select(:enrollment_type_id,@enrollment_types,:id,:full_name) %>
+
+
+    <%= f.label :program_type %><br />
+    <%= f.collection_select(:program_type_id,@program_types,:id,:name) %>
+
+
+    <%= f.label :entry_level %><br />
+    <%= f.select(:entry_level,['Year I','Advanced standing','Transer']) %>
+
+  </fieldset>
+  <fieldset id="personal_info"><legend>Personal Info</legend>    
+
+    <%= fields_for(@admission.student.person) do |field|%>
+    <div>
+        <%= field.label :first_name %><br/>
+        <%= field.text_field :first_name %>
+    </div>
+    <div>
+        <%= field.label :fahter_name %><br/>
+        <%= field.text_field :father_name %>
+    </div>
+    <div>
+        <%= field.label :grand_father_name %><br/>
+        <%= field.text_field :grand_father_name %>
+    </div>
+    <div>
+        <%= field.label :birth_date %><br/>
+        <%= field.date_select :birth_date %>
+    </div>
+    <div>
+        <%= field.label :mother_full_name %><br/>
+        <%= field.text_field :mother_full_name %>
+    </div>
+    <div>
+        <%= field.label :nationality %><br/>
+        <%= field.select(:nationality, ['Ethiopian','Foreigner'])  %>
+    </div>
+    <div>
+        <%= field.label :ethnic_group %><br/>
+        <%= field.select(:ethnic_group,['Amhara','Tigray','Oromia','SNNP']) %>
+    </div>
+    <div>
+        <%= field.label :mother_tounge %><br/>
+        <%= field.select(:mother_tounge, ['Amharic','Tigrigna','Oromifa']) %>
+    </div>
+<% end %>
+</fieldset>
+
+<div class="actions">
+    <%= f.submit %>
+</div>
+<% end %>

@@ -1,0 +1,2 @@
+module DepartmentChoicesHelper
+end

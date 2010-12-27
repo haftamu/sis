@@ -71,7 +71,7 @@
                 minSize: 175,
                 maxSize: 400,
                 collapsible: true,
-                activeItem:1,
+                activeItem:0,
                 margins: '0 0 0 5',
                 layout: {
                     type: 'accordion',

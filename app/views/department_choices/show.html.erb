@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Student:</b>
+  <%= @department_choice.student_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_department_choice_path(@department_choice) %> |
+<%= link_to 'Back', department_choices_path %>

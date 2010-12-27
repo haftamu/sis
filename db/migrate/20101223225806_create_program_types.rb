@@ -2,8 +2,6 @@ class CreateProgramTypes < ActiveRecord::Migration
   def self.up
     create_table :program_types do |t|
       t.string :name
-      t.string :mode
-
       t.timestamps
     end
   end

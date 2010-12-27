@@ -1,6 +1,32 @@
 Sis::Application.routes.draw do  
   
+  resources :person_contacts
+
+  resources :person_addresses
+
+  resources :student_correspondences
+
+  resources :student_referees
+
+  resources :student_publications
+
+  resources :student_experiences
+
+  resources :student_qualifications
+
+  resources :department_choices
+
+  resources :higer_education_backgrounds
+
+  resources :employment_backgrounds
+
+  resources :educational_backgrounds
+
+  resources :family_backgrounds
+
   resources :enrollment_types
+  resources :admission
+  resources :admissions
 
  # get "students/index"
 

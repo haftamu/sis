@@ -1,8 +1,13 @@
-regular:
-  name: Regular
-extension:
-  name: Extension
-inservice:
-  name: In-Service
-distance:
-  name: Distance
+EnrollmentType:
+  regular_full_time:
+    name: Regular
+    mode: Fulltime
+  regular_part_time:
+    name: Regular
+    mode: Fulltime
+  extension:
+    name: Extension
+  inservice:
+    name: In-Service
+  distance:
+    name: Distance

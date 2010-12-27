@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Exttrial</title>
+  <title>Mekelle Univeristy- Student Information System</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= netzke_init %>
@@ -20,14 +20,16 @@
     <div id="basic_setup">
         <%= link_to('Academic Calendar','/academic_calendars/') %><br/>
         <%= link_to('Semesters','/semesters/') %><br/>
-        <%= link_to('Admission Types','/admission_types/') %><br/>  
+		<%= link_to('Enrollment Types','/enrollment_types/') %><br/>
+		<%= link_to('Program Types','/program_types/') %><br/>
+		<%= link_to('Admission Types','/admission_types/') %><br/>
         <%= link_to('Campus','/campus/') %><br/>
         <%= link_to('Colleges','/colleges/') %><br/>
         <%= link_to('Departments','/departments/') %><br/>
         <%= link_to('Courses','/courses/') %><br/>
         <%= link_to('Prerequisites','/course_prerequisites/') %><br/>
         <%= link_to('Offerred Courses','/offerred_courses/') %><br/>
-        <%= link_to('Yared Courses','/yared/') %><br/>
+
     </div>
     <div id="west" class="x-hide-display">
          <div>
@@ -36,19 +38,19 @@
             <%= link_to('Enrollment') %><br/>
             <%= link_to('Clearance and Withdrawal') %><br/>
             <%= link_to('Transfer','/transfers/new') %><br/>
-        </div>    
+        </div>
     </div>
-    
-    <div id='student_menu'>           
+
+    <div id='student_menu'>
         <%= link_to('Create Profile','/students/new') %><br/>
         <%= link_to('Courses','/courses/') %><br/>
         <%= link_to('Grade','/grades/') %><br/>
-        
+
     </div>
     <div id="center2" class="x-hide-display">
-        <%= yield %>        
+        <%= yield %>
     </div>
-    
+
     <div id="props-panel" class="x-hide-display" style="width:200px;height:200px;overflow:hidden;">
     </div>
     <div id="mu_forms" class="x-hide-display">

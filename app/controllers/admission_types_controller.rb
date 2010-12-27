@@ -25,7 +25,8 @@ class AdmissionTypesController < ApplicationController
   # GET /admission_types/new.xml
   def new
     @admission_type = AdmissionType.new
-
+    @enrollment_types = EnrollmentType.all
+    @program_types = ProgramType.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @admission_type }
@@ -35,6 +36,8 @@ class AdmissionTypesController < ApplicationController
   # GET /admission_types/1/edit
   def edit
     @admission_type = AdmissionType.find(params[:id])
+    @enrollment_types = EnrollmentType.all
+    @program_types = ProgramType.all
   end
 
   # POST /admission_types
