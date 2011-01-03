@@ -1,7 +1,0 @@
-ProgramType:
-  undergraduate_degree:
-    name: Degree
-  postgraduate_degree:
-    name: Postgraduate Degree
-  phd:
-    name: Phd Degree
