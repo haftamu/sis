@@ -1,0 +1,30 @@
+# This yaml file is used to load colleges in the colleges table
+# notice the campus variable although you have campus_id in colleges table Yaml automatically
+# inserts it for you.
+# Also the reference endayesus_campus is the variable used in the campus.yml as an identifier
+# Follow along the same procedure to record all test data you need
+# NOTE :
+#  1. Indentation MUST be SPACES not TABs
+#  2. ONLY 2 spaces are required starting from the first character above it
+#  3. Refer to the <version_num>_create_<table_name>.rb and
+#     <version_num>_add_<column>_to_<table_name>.rb  files for a list of column names
+# or simply refer to the databse 
+# E.g >
+# person_yared:
+#   ^ start writing your column name here
+# i.e :
+# person_yared:
+#   first_name: Yared
+#   father_name: Getachew
+#   grandfather_name: Tessema
+# How to load data
+# rake db:fixtures:load
+#
+college_of_natural_science_and_computational_science:
+  campus_id: endayesus_campus
+  name: College of Natural Science and Computing
+  
+
+college_of_social_sciences_and_languages:  
+  campus_id: business_campus 
+  name: College of Social Sciences & Languages
